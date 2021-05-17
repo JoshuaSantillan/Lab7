@@ -7,6 +7,7 @@ export const router = {};
  */
 const getBody = document.querySelector('body');
 const headerTitle = document.querySelector('header h1');
+
 router.setState = function(s) {
   /*
     Will need to add a state for: main page, the entry pages, and the setting page.
@@ -23,7 +24,6 @@ router.setState = function(s) {
   }
   else if(s.page == 'entry'){
     history.pushState(s,s.page+s.id,"#"+s.page+s.id);
-
     getBody.className = 'single-entry';
     headerTitle.textContent = 'Entry ' + s.id;
 
@@ -40,4 +40,10 @@ router.setState = function(s) {
     history.pushState(s, "Settings", "#Settings");
   }
 
+  window.onpopstate = function(e) {
+    if(headerTitle.textContent == "Journal Entries")
+      document.body.className = "";
+    else 
+      document.body.className = e.getClassName;
+  }
 }

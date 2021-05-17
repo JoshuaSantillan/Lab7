@@ -41,3 +41,12 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+
+window.onpopstate = function(event) {
+  if(headerTitle.textContent == "Journal Entries"){
+    document.body.className = "";
+  }
+  else {
+    document.body.className = getBody.className;
+  }
+}
